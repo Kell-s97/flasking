@@ -1,4 +1,11 @@
 pipeline {
+  
+  environment {
+    registry = "kell-s97/flask_app"
+    registryCredentials = "docker"
+    cluster_name = "skillstorm"
+  }
+  
   agent {
     node {
       label 'docker'
