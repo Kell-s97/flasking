@@ -1,14 +1,14 @@
 apiVersion: apps/v1 
 kind: Deployment 
 metadata: 
-  name:  flaskcontainer 
+  name:  gkelley_flaskcontainer 
   namespace: kells97 
   labels: 
-    app:  flaskcontainer 
+    app:  gkelley_flaskcontainer 
 spec: 
   selector: 
     matchLabels: 
-      app: flaskcontainer 
+      app: gkelley_flaskcontainer 
   replicas: 1 
   strategy: 
     rollingUpdate: 
@@ -18,10 +18,10 @@ spec:
   template: 
     metadata: 
       labels: 
-        app:  flaskcontainer 
+        app:  gkelley_flaskcontainer 
     spec: 
       containers: 
-      - name:  flaskcontainer 
+      - name:  gkelley_flaskcontainer 
         image:  kells97/flask_app 
         resources: 
           requests: 
@@ -32,7 +32,7 @@ spec:
             memory: 100Mi 
         ports: 
         - containerPort:  5000 
-          name:  flaskcontainer 
+          name:  gkelley_flaskcontainer 
         imagePullPolicy: Always 
       restartPolicy: Always 
  
@@ -40,18 +40,18 @@ spec:
 apiVersion: v1 
 kind: Service 
 metadata: 
-  name: flaskcontainer 
+  name: gkelley_flaskcontainer 
   namespace: kells97 
 spec: 
   selector: 
-    app: flaskcontainer 
+    app: gkelley_flaskcontainer 
   type: LoadBalancer 
   sessionAffinity: None 
   sessionAffinityConfig: 
     clientIP: 
       timeoutSeconds: 10800 
   ports: 
-  - name: flaskcontainer 
+  - name: gkelley_flaskcontainer 
     protocol: TCP 
     port: 80 
     targetPort: 5000 
