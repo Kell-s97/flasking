@@ -50,11 +50,10 @@ pipeline {
               echo "Error / namespace already created"
             }
           }
-          sh "kubectl apply -f ./deployment.yaml -n ${namespace}"
+          sh "kubectl apply -f deployment.yaml -n ${namespace}"
           sh "kubectl -n ${namespace} rollout restart deployment gkelleyflask"
         }
       }
     }
   }
-}
-    
+}    
